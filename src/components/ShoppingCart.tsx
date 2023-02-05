@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './ShoppingCart.module.css';
-
+import {FiShoppingCart} from "react-icons/fi";
 interface Props{
 
 }
@@ -19,7 +19,11 @@ class ShoppingCart extends React.Component<Props, State>{
     }
 
     handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        this.setState({isOpen:!this.state.isOpen})
+        console.log('e.target',e.target)
+        console.log('e.currentTarget',e.currentTarget)
+        if ((e.target as HTMLLIElement).nodeName === 'SPAN'){
+            this.setState({isOpen:!this.state.isOpen})
+        }
     }
     render() {
         return (
@@ -28,7 +32,8 @@ class ShoppingCart extends React.Component<Props, State>{
                    className={styles.button}
                    onClick={this.handleClick}
                 >
-                    购物车2件
+                    <FiShoppingCart/>
+                    <span>购物车2件</span>
                 </button>
                 <div
                     className={styles.cartDropDown}
